@@ -1,0 +1,48 @@
+// download plugins for Gradle uses
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'application'
+
+repositories {
+    maven {
+        url "https://cloud.experitest.com/repo"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.testng', name: 'testng', version: '6.8.8'
+    compile 'io.appium:java-client:5.0.4'
+    compile 'com.experitest:manager-client:+'
+
+}
+
+mainClassName = "com.experitest.SimpleApp"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.4.1'
+}
+
+test{
+
+    testLogging {
+        events "standardOut"
+    }
+
+    useTestNG() {
+        //set TestNG output dir
+        outputDirectory = file("testngOutput")
+        reports.html.enabled = false
+        useDefaultListeners = true
+        suites 'testng.xml'
+    }
+}

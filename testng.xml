@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="AppiumDemo" parallel="classes" verbose="1" thread-count="2">
+
+    <test name="Android Run">
+        <parameter name="deviceQuery" value="@os='ios'"/>
+        <classes>
+            <class name="com.experitest.SimpleTest2" />
+        </classes>
+    </test>
+
+    <test name="iOS Run">
+        <parameter name="deviceQuery" value="@os='ios'"/>
+        <classes>
+            <class name="com.experitest.IosDemo" />
+        </classes>
+    </test>
+
+</suite>
